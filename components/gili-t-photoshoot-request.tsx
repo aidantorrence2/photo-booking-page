@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Instagram, Phone, Camera, Loader2 } from "lucide-react"
+import { Instagram, Phone, Camera, Loader2, Globe } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 
@@ -99,12 +99,20 @@ export function GiliTPhotoshootRequest() {
                   With 3+ years capturing beauty around the world, Aidan brings expertise and vision to every shoot.
                 </p>
               </div>
-              <div className="flex items-center text-blue-500">
-                <Camera className="w-4 h-4 mr-1" />
-                <a href="https://www.instagram.com/aidantorrencephoto" target="_blank" rel="noopener noreferrer" className="text-sm hover:underline">
-                  @madebyaidan
-                </a>
-              </div>
+<div className="flex items-center text-blue-500 space-x-4">
+    <div className="flex items-center">
+      <Camera className="w-4 h-4 mr-1" />
+      <a href="https://www.instagram.com/aidantorrencephoto" target="_blank" rel="noopener noreferrer" className="text-sm hover:underline">
+        @madebyaidan
+      </a>
+    </div>
+    <div className="flex items-center">
+      <Globe className="w-4 h-4 mr-1" />
+      <a href="https://www.aidantorrence.com" target="_blank" rel="noopener noreferrer" className="text-sm hover:underline">
+        www.aidantorrence.com
+      </a>
+    </div>
+  </div>
             </div>
           </div>
           <form onSubmit={handleSubmit} className="space-y-4">
