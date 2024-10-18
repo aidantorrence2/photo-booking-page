@@ -6,8 +6,9 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Instagram, Phone, Camera } from "lucide-react"
+import { Instagram, Phone, Camera, Loader2 } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 
 export function GiliTPhotoshootRequest() {
   const [date, setDate] = useState<string>("")
@@ -16,9 +17,12 @@ export function GiliTPhotoshootRequest() {
   const [instagram, setInstagram] = useState<string>("")
   const [whatsapp, setWhatsapp] = useState<string>("")
   const [style, setStyle] = useState<string>("")
+  const [isLoading, setIsLoading] = useState(false)
+  const [showConfirmation, setShowConfirmation] = useState(false)
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setIsLoading(true)
     const formData = { name, instagram, whatsapp, date, timeSlot, style }
     
     try {
@@ -31,14 +35,22 @@ export function GiliTPhotoshootRequest() {
       });
 
       if (response.ok) {
-        alert("Your request has been sent! We'll get back to you soon.");
-        // Reset form fields here if needed
+        setShowConfirmation(true)
+        // Reset form fields
+        setName("")
+        setInstagram("")
+        setWhatsapp("")
+        setDate("")
+        setTimeSlot("")
+        setStyle("")
       } else {
         alert("There was an error submitting your request. Please try again.");
       }
     } catch (error) {
       console.error('Error:', error);
       alert("There was an error submitting your request. Please try again.");
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -166,8 +178,15 @@ export function GiliTPhotoshootRequest() {
                 onChange={(e) => setStyle(e.target.value)}
               />
             </div>
-            <Button type="submit" className="w-full bg-green-600 hover:bg-green-700">
-              Request Your Nature Shoot
+            <Button type="submit" className="w-full bg-green-600 hover:bg-green-700" disabled={isLoading}>
+              {isLoading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Submitting...
+                </>
+              ) : (
+                "Request Your Nature Shoot"
+              )}
             </Button>
           </form>
         </CardContent>
@@ -175,6 +194,18 @@ export function GiliTPhotoshootRequest() {
           Questions? Message on instagram @madebyaidan or WhatsApp +64 27 359 7185
         </CardFooter>
       </Card>
+
+      <Dialog open={showConfirmation} onOpenChange={setShowConfirmation}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Booking Request Sent!</DialogTitle>
+            <DialogDescription>
+              Thank you for your interest in a nature photoshoot with Aidan. We've received your request and will get back to you soon to confirm the details.
+            </DialogDescription>
+          </DialogHeader>
+          <Button onClick={() => setShowConfirmation(false)}>Close</Button>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
