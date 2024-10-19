@@ -59,7 +59,7 @@ export function GiliTPhotoshootRequest() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-green-300 via-blue-300 to-teal-400 p-4 flex items-center justify-center">
+    <div className="min-h-screen bg-white p-4 flex items-center justify-center">
       <Card className="w-full max-w-4xl bg-white/90 backdrop-blur-sm shadow-xl">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl font-bold text-green-800">Gili T Nature Photoshoot</CardTitle>
