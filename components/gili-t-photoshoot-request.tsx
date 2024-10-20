@@ -60,14 +60,14 @@ export function GiliTPhotoshootRequest() {
 
   return (
     <div className="min-h-screen bg-white p-4 flex items-center justify-center">
-      <Card className="w-full max-w-4xl bg-white/90 ">
+      <Card className="w-full max-w-4xl bg-white shadow-none border-none">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl font-bold text-green-800">Gili T Nature Photoshoot</CardTitle>
           <CardDescription className="text-lg text-green-600">Capture the beauty of nature and yourself</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-6 md:grid-cols-2">
           <div className="space-y-4">
-            <div className="aspect-video rounded-lg overflow-hidden">
+            <div className="aspect-video overflow-hidden rounded-xl">
               <img
                 src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2lsaSUyMHRyYXdhbmdhbnxlbnwwfHwwfHx8MA%3D%3D"
                 alt="Gili T Nature"
@@ -78,7 +78,7 @@ export function GiliTPhotoshootRequest() {
               Ready to connect with nature in Gili T? Let's create magic together! Our photoshoot experience blends the island's 
               natural beauty with your unique spirit, resulting in photos that capture the essence of you and the stunning surroundings.
             </p>
-            <div className="bg-green-100 p-4 rounded-lg">
+            <div className="bg-green-100 p-4 rounded-xl">
               <h3 className="font-semibold text-green-800 mb-2">October Special - Don't Miss Out!</h3>
               <ul className="list-disc list-inside text-sm text-green-700 space-y-1">
                 <li>2 hours of nature photography</li>
@@ -87,7 +87,7 @@ export function GiliTPhotoshootRequest() {
                 <li>Inquire about special deals</li>
               </ul>
             </div>
-            <div className="bg-blue-100 p-4 rounded-lg">
+            <div className="bg-blue-100 p-4 rounded-xl">
               <h3 className="font-semibold text-blue-800 mb-2">Your Photographer: Aidan Torrence</h3>
               <div className="flex items-center space-x-3 mb-2">
                 <img
