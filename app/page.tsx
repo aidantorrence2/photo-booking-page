@@ -1,7 +1,7 @@
-import { GiliTPhotoshootRequest } from "@/components/gili-t-photoshoot-request";
+import { GiliT } from "@/components/gili-t";
 
 export default function Home() {
   return (
-    <GiliTPhotoshootRequest />
+    <GiliT />
   );
 }

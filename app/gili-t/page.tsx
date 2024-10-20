@@ -1,8 +1,8 @@
-import { GiliTPhotoshootRequest } from "@/components/gili-t-photoshoot-request";
+import { GiliT } from "@/components/gili-t";
 
-export default function GiliTPage() {
+export default function Page() {
   return (
-    <GiliTPhotoshootRequest />
+    <GiliT />
   );
 }
 

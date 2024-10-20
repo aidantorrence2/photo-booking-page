@@ -1,29 +1,30 @@
 'use client'
 
 import { useState } from "react"
-import { Card, CardContent, CardFooter, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Instagram, Phone, Camera, Loader2, Globe } from "lucide-react"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Instagram, Camera, Loader2, Globe, MessageCircle } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Textarea } from "@/components/ui/textarea"
 
-export function GiliTPhotoshootRequest() {
+export function Bali() {
   const [date, setDate] = useState<string>("")
   const [timeSlot, setTimeSlot] = useState<string>("")
   const [name, setName] = useState<string>("")
   const [instagram, setInstagram] = useState<string>("")
   const [whatsapp, setWhatsapp] = useState<string>("")
-  const [style, setStyle] = useState<string>("")
+  const [style, setStyle] = useState<string>("beach")
   const [isLoading, setIsLoading] = useState(false)
   const [showConfirmation, setShowConfirmation] = useState(false)
+  const [comment, setComment] = useState<string>("")
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setIsLoading(true)
-    const formData = { name, instagram, whatsapp, date, timeSlot, style }
+    const formData = { name, instagram, whatsapp, date, timeSlot, style, comment }
     
     try {
       const response = await fetch('/api/submit-request', {
@@ -43,6 +44,7 @@ export function GiliTPhotoshootRequest() {
         setDate("")
         setTimeSlot("")
         setStyle("")
+        setComment("")
       } else {
         alert("There was an error submitting your request. Please try again.");
       }
@@ -54,40 +56,15 @@ export function GiliTPhotoshootRequest() {
     }
   }
 
-  const timeSlots = [
-    "6:00 AM", "7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"
-  ]
-
   return (
     <div className="min-h-screen bg-white py-8 px-4 sm:px-6 lg:px-8">
       <Card className="w-full max-w-6xl mx-auto bg-white shadow-none border-none">
-        <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold text-green-800">Gili T Nature Photoshoot</CardTitle>
-          <CardDescription className="text-lg text-green-600">Capture the beauty of nature and yourself</CardDescription>
+        <CardHeader className="text-center p-1">
+          <CardTitle className="text-3xl font-bold text-green-800">Bali Photoshoot</CardTitle>
         </CardHeader>
         <CardContent className="mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-6">
-              <div className="aspect-video overflow-hidden rounded-xl">
-                <img
-                  src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2lsaSUyMHRyYXdhbmdhbnxlbnwwfHwwfHx8MA%3D%3D"
-                  alt="Gili T Nature"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <p className="text-sm text-gray-600">
-                Ready to connect with nature in Gili T? Let's create magic together! Our photoshoot experience blends the island's 
-                natural beauty with your unique spirit, resulting in photos that capture the essence of you and the stunning surroundings.
-              </p>
-              <div className="bg-green-100 p-4 rounded-xl">
-                <h3 className="font-semibold text-green-800 mb-2">October Special - Don't Miss Out!</h3>
-                <ul className="list-disc list-inside text-sm text-green-700 space-y-1">
-                  <li>2 hours of nature photography</li>
-                  <li>30 edited photos of your selection</li>
-                  <li><span className="line-through">$300</span> <span className="font-bold">$250</span> (Save $50!)</li>
-                  <li>Inquire about special deals</li>
-                </ul>
-              </div>
               <div className="bg-blue-100 p-4 rounded-xl">
                 <h3 className="font-semibold text-blue-800 mb-2">Your Photographer: Aidan Torrence</h3>
                 <div className="flex items-center space-x-3 mb-2">
@@ -97,13 +74,13 @@ export function GiliTPhotoshootRequest() {
                     className="w-12 h-12 rounded-full object-cover"
                   />
                   <p className="text-sm text-blue-600">
-                    With 3+ years capturing beauty around the world, Aidan brings expertise and vision to every shoot.
+                    With 3+ years of professional fashion and portrait photography experience around the world, Aidan brings expertise and vision to every shoot. 
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center text-blue-500 space-y-2 sm:space-y-0 sm:space-x-4">
                   <div className="flex items-center">
                     <Camera className="w-4 h-4 mr-1" />
-                    <a href="https://www.instagram.com/aidantorrencephoto" target="_blank" rel="noopener noreferrer" className="text-sm hover:underline">
+                    <a href="https://www.instagram.com/madebyaidan" target="_blank" rel="noopener noreferrer" className="text-sm hover:underline">
                       @madebyaidan
                     </a>
                   </div>
@@ -115,11 +92,38 @@ export function GiliTPhotoshootRequest() {
                   </div>
                 </div>
               </div>
+<div className="aspect-video rounded-xl overflow-hidden">
+  <div className="flex gap-4 h-full p-4">
+    <img
+      src="/portfolio-image.jpg"
+      alt="portfolio-image"
+      className="w-[calc(50%-0.5rem)] object-cover object-top rounded-xl"
+    />
+    <img
+      src="/portfolio-image-2.jpg"
+      alt="portfolio-image"
+      className="w-[calc(50%-0.5rem)] object-cover object-top rounded-xl"
+    />
+  </div>
+</div>
+              <p className="text-sm text-gray-600">
+                Make your dream photoshoot come true in Bali.
+              </p>
+              <div className="bg-green-100 p-4 rounded-xl">
+                <h3 className="font-semibold text-green-800 mb-2">October Special - Don't Miss Out!</h3>
+                <ul className="list-disc list-inside text-sm text-green-700 space-y-1">
+                  <li>2 hours shooting time</li>
+                  <li>30 edited photos of your selection</li>
+                  <li>Lowest price ever <span className="line-through">$300</span> <span className="font-bold">$100</span> (Save $200!)</li>
+                  <li>Inquire about special deals</li>
+                </ul>
+              </div>
+              
             </div>
             <div>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Your Name</Label>
+                  <Label htmlFor="name" className="font-bold">Name</Label>
                   <Input 
                     id="name" 
                     placeholder="What should we call you?" 
@@ -129,7 +133,7 @@ export function GiliTPhotoshootRequest() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="instagram">Instagram Handle</Label>
+                  <Label htmlFor="instagram" className="font-bold">Instagram Handle</Label>
                   <div className="relative">
                     <Instagram className="absolute left-2 top-2.5 h-5 w-5 text-gray-500" />
                     <Input 
@@ -143,61 +147,53 @@ export function GiliTPhotoshootRequest() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="whatsapp">WhatsApp Number</Label>
-                  <div className="relative">
-                    <Phone className="absolute left-2 top-2.5 h-5 w-5 text-gray-500" />
-                    <Input 
-                      id="whatsapp" 
-                      placeholder="+62 your number" 
-                      className="pl-9" 
-                      required 
-                      value={whatsapp}
-                      onChange={(e) => setWhatsapp(e.target.value)}
-                    />
-                  </div>
+                  <Label htmlFor="style" className="font-bold">Shoot Style</Label>
+                  <RadioGroup id="style" value={style} onValueChange={setStyle}>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="beach" id="beach" />
+                      <Label htmlFor="beach">Beach</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="outdoor" id="outdoor" />
+                      <Label htmlFor="outdoor">Outdoor</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="villa" id="villa" />
+                      <Label htmlFor="villa">Villa/Apartment</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="other" id="other" />
+                      <Label htmlFor="other">Other</Label>
+                    </div>
+                  </RadioGroup>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="date">Shoot Date</Label>
-                  <Input
-                    id="date"
-                    type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="timeslot">Time Slot</Label>
-                  <Select onValueChange={setTimeSlot} required>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a time slot" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {timeSlots.map((slot) => (
-                        <SelectItem key={slot} value={slot}>{slot}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="style">Your Nature Vibe</Label>
+                  <Label htmlFor="comment" className="font-bold">Additional Comments <span className="font-normal">(optional)</span></Label>
                   <Textarea
-                    id="style"
-                    placeholder="Beach explorer? Jungle adventurer? Tell us your dream nature shoot!"
-                    value={style}
-                    onChange={(e) => setStyle(e.target.value)}
+                    id="comment"
+                    placeholder="Any additional inquiry, comments, or requests?"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
                   />
                 </div>
-                <Button type="submit" className="w-full bg-green-600 hover:bg-green-700" disabled={isLoading}>
+                <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 mb-4" disabled={isLoading}>
                   {isLoading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                       Submitting...
                     </>
                   ) : (
-                    "Request Your Nature Shoot"
+                    "Request Photo Shoot"
                   )}
                 </Button>
+<Button
+  type="button"
+  className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white rounded-full p-3 shadow-lg transition-all duration-300 ease-in-out"
+  onClick={() => window.open(`https://wa.me/6427359718`, '_blank')}
+  aria-label="Contact via WhatsApp"
+>
+  <MessageCircle className="h-6 w-6" />
+</Button>
               </form>
             </div>
           </div>

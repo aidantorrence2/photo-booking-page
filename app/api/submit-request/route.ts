@@ -24,9 +24,9 @@ async function sendTelegramMessage(message: string) {
 
 export async function POST(req: Request) {
   try {
-    const { name, instagram, whatsapp, date, timeSlot, style } = await req.json();
+    const { name, instagram, whatsapp, date, timeSlot, style, comment } = await req.json();
 
-    // Insert data into database
+    // Check if the table exists and create it if it doesn't
     await sql`
       CREATE TABLE IF NOT EXISTS requests (
         id SERIAL PRIMARY KEY,
@@ -40,9 +40,20 @@ export async function POST(req: Request) {
       )
     `;
 
+    // Add the comment column if it doesn't exist
     await sql`
-      INSERT INTO requests (name, instagram, whatsapp, date, time_slot, style)
-      VALUES (${name}, ${instagram}, ${whatsapp}, ${date}, ${timeSlot}, ${style})
+      DO $$ 
+      BEGIN 
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name = 'requests' AND column_name = 'comment') THEN
+          ALTER TABLE requests ADD COLUMN comment TEXT;
+        END IF;
+      END $$;
+    `;
+
+    // Insert data into database
+    await sql`
+      INSERT INTO requests (name, instagram, whatsapp, date, time_slot, style, comment)
+      VALUES (${name}, ${instagram}, ${whatsapp}, ${date}, ${timeSlot}, ${style}, ${comment})
     `;
 
     // Send Telegram message
@@ -52,7 +63,8 @@ Instagram: ${instagram}
 WhatsApp: ${whatsapp}
 Date: ${date}
 Time: ${timeSlot}
-Style: ${style}`;
+Style: ${style}
+Comment: ${comment}`;
 
     await sendTelegramMessage(message);
 
