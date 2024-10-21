@@ -82,7 +82,7 @@ export function Bali() {
                 </div>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center text-blue-500 space-y-2 sm:space-y-0 sm:space-x-4">
                   <div className="flex items-center">
-                    <Camera className="w-4 h-4 mr-1" />
+                    <Instagram className="w-4 h-4 mr-1" />
                     <a href="https://www.instagram.com/madebyaidan" target="_blank" rel="noopener noreferrer" className="text-sm hover:underline">
                       @madebyaidan
                     </a>
