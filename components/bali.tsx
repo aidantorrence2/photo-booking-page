@@ -9,6 +9,7 @@ import { Instagram, Camera, Loader2, Globe, MessageCircle } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
+import Image from 'next/image'
 
 export function Bali() {
   const [date, setDate] = useState<string>("")
@@ -68,10 +69,12 @@ export function Bali() {
               <div className="bg-blue-100 p-4 rounded-xl">
                 <h3 className="font-semibold text-blue-800 mb-2">Your Photographer: Aidan Torrence</h3>
                 <div className="flex items-center space-x-3 mb-2">
-                  <img
+                  <Image
                     src="/profile-page.jpg"
                     alt="Aidan Torrence"
-                    className="w-12 h-12 rounded-full object-cover"
+                    width={48}
+                    height={48}
+                    className="rounded-full object-cover"
                   />
                   <p className="text-sm text-blue-600">
                     With 3+ years of professional fashion and portrait photography experience around the world, Aidan brings expertise and vision to every shoot. 
@@ -94,14 +97,20 @@ export function Bali() {
               </div>
 <div className="aspect-video rounded-xl overflow-hidden">
   <div className="flex gap-4 h-full p-4">
-    <img
+    <Image
       src="/portfolio-image.jpg"
+      priority
       alt="portfolio-image"
+      width={500}
+      height={300}
       className="w-[calc(50%-0.5rem)] object-cover object-top rounded-xl"
     />
-    <img
+    <Image
       src="/portfolio-image-2.jpg"
       alt="portfolio-image"
+      priority
+      width={500}
+      height={300}
       className="w-[calc(50%-0.5rem)] object-cover object-top rounded-xl"
     />
   </div>
@@ -189,7 +198,7 @@ export function Bali() {
 <Button
   type="button"
   className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white rounded-full p-3 shadow-lg transition-all duration-300 ease-in-out"
-  onClick={() => window.open(`https://wa.me/6427359718`, '_blank')}
+  onClick={() => window.open(`https://wa.me/64273597185`, '_blank')}
   aria-label="Contact via WhatsApp"
 >
   <MessageCircle className="h-6 w-6" />
