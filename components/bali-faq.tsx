@@ -6,9 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Camera, MessageCircle, Star, DollarSign } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import Image from 'next/image'
-import Link from 'next/link'
 
-export function Bali() {
+export function BaliFAQ() {
   const [showConfirmation, setShowConfirmation] = useState(false)
 
   return (
@@ -36,7 +35,7 @@ export function Bali() {
             />
             <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-4 text-white">
               <h2 className="text-xl font-bold">Professional Photography in Paradise</h2>
-              <p>Create Lasting Memories in 2 Hours</p>
+              <p>Create Lasting Memories in 2 Hours for US $100</p>
             </div>
           </div>
 
@@ -65,16 +64,6 @@ export function Bali() {
               <span className="text-sm">Money-back guarantee</span>
             </div>
           </div>
-          <div className="flex items-center space-x-2 ">
-          {/* Book Now Button */}
-          <Link href="/booking" passHref className="w-full">
-            <Button 
-              className="w-full bg-black hover:bg-gray-900 text-white py-4 text-lg"
-            >
-              BOOK NOW
-            </Button>
-          </Link>
-          </div>
 
           {/* About the Photographer */}
           <Card className="bg-blue-50 border-blue-200">
@@ -95,6 +84,7 @@ export function Bali() {
                 <li>30 expertly edited high-resolution photos</li>
                 <li>Online gallery for easy sharing</li>
                 <li>Print release for personal use</li>
+                <li>Photo delivery within 1 week</li>
               </ul>
             </CardContent>
           </Card>
