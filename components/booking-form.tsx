@@ -7,21 +7,22 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
-import { Instagram, Loader2 } from "lucide-react"
+import { Instagram, Loader2, Mail } from "lucide-react"
 
 export function BookingForm() {
-  const [name, setName] = useState<string>("")
+  const [email, setEmail] = useState<string>("")
   const [instagram, setInstagram] = useState<string>("")
   const [style, setStyle] = useState<string>("beach")
   const [isLoading, setIsLoading] = useState(false)
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [comment, setComment] = useState<string>("")
   const [location, setLocation] = useState<string>("")
+  const [budget, setBudget] = useState<string>("")
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setIsLoading(true)
-    const formData = { name, instagram, style, comment, location }
+    const formData = { email, instagram, style, comment, location, budget }
 
     try {
       const response = await fetch('/api/submit-request', {
@@ -60,14 +61,19 @@ export function BookingForm() {
       <CardContent className="p-6">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="name" className="font-bold">Name</Label>
-            <Input 
-              id="name" 
-              placeholder="What should we call you?" 
-              required 
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
+            <Label htmlFor="email" className="font-bold">Email</Label>
+            <div className="relative">
+              <Mail className="absolute left-2 top-2.5 h-5 w-5 text-gray-500" />
+              <Input 
+                id="email" 
+                type="email"
+                placeholder="Your email address" 
+                required 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="pl-9"
+              />
+            </div>
           </div>
           <div className="space-y-2">
             <Label htmlFor="instagram" className="font-bold">Instagram Handle</Label>
@@ -108,6 +114,17 @@ export function BookingForm() {
               required 
               value={location}
               onChange={(e) => setLocation(e.target.value)}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="budget" className="font-bold">Budget</Label>
+            <Input 
+              id="budget" 
+              type="number" 
+              placeholder="Your budget in USD"
+              required 
+              value={budget}
+              onChange={(e) => setBudget(e.target.value)}
             />
           </div>
           <div className="space-y-2">

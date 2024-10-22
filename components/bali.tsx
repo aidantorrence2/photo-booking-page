@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Camera, MessageCircle, Star } from "lucide-react"
+import { Camera, MessageCircle, Star, DollarSign } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import Image from 'next/image'
 import Link from 'next/link'
@@ -41,28 +41,30 @@ export function Bali() {
           </div>
 
           {/* Key Information */}
-          <div className="flex justify-between items-center">
+          <div className="grid grid-cols-2 gap-4">
             <div className="flex items-center space-x-2">
               <Camera className="w-5 h-5 text-green-600" />
               <span className="text-sm">Private session</span>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 justify-end">
               <Star className="w-5 h-5 text-yellow-500" />
               <span className="text-sm">100+ happy clients</span>
             </div>
+            <div className="flex items-center space-x-2">
+              <Image
+                src="/profile-page.jpg"
+                alt="Aidan Torrence"
+                width={20}
+                height={20}
+                className="rounded-full"
+              />
+              <a href="https://www.aidantorrence.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:underline">By Aidan Torrence</a>
+            </div>
+            <div className="flex items-center space-x-2 justify-end">
+              <DollarSign className="w-5 h-5 text-purple-600" />
+              <span className="text-sm">Money-back guarantee</span>
+            </div>
           </div>
-
-          <div className="flex items-center space-x-2">
-            <Image
-              src="/profile-page.jpg"
-              alt="Aidan Torrence"
-              width={32}
-              height={32}
-              className="rounded-full"
-            />
-            <a href="https://www.aidantorrence.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:underline">By Aidan Torrence</a>
-          </div>
-
           <div className="flex items-center space-x-2 ">
           {/* Book Now Button */}
           <Link href="/booking" passHref className="w-full">

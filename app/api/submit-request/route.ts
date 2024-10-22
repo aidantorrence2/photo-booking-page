@@ -24,42 +24,45 @@ async function sendTelegramMessage(message: string) {
 
 export async function POST(req: Request) {
   try {
-    const { name, instagram, style, comment, location } = await req.json();
+    const { email, instagram, style, comment, location, budget } = await req.json();
 
     // Check if the table exists and create it if it doesn't
     await sql`
       CREATE TABLE IF NOT EXISTS requests (
         id SERIAL PRIMARY KEY,
-        name TEXT,
+        email TEXT,
         instagram TEXT,
         style TEXT,
         comment TEXT,
+        location TEXT,
+        budget INTEGER,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `;
 
-    // Check if the location column exists and add it if it doesn't
+    // Check if the email column exists and add it if it doesn't
     await sql`
       DO $$ 
       BEGIN 
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name = 'requests' AND column_name = 'location') THEN
-          ALTER TABLE requests ADD COLUMN location TEXT;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name = 'requests' AND column_name = 'email') THEN
+          ALTER TABLE requests ADD COLUMN email TEXT;
         END IF;
       END $$;
     `;
 
     // Insert data into database
     await sql`
-      INSERT INTO requests (name, instagram, style, location, comment)
-      VALUES (${name}, ${instagram}, ${style}, ${location}, ${comment})
+      INSERT INTO requests (email, instagram, style, location, comment, budget)
+      VALUES (${email}, ${instagram}, ${style}, ${location}, ${comment}, ${budget})
     `;
 
     // Send Telegram message
     const message = `New photoshoot request:
-Name: ${name}
+Email: ${email}
 Instagram: ${instagram}
 Style: ${style}
 Location: ${location}
+Budget: $${budget}
 Comment: ${comment}`;
 
     await sendTelegramMessage(message);
