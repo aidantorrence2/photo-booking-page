@@ -37,6 +37,7 @@ export const metadata: Metadata = {
     description: 'Book a professional photography session. Capture your paradise moments with expert photographer Aidan Torrence.',
     images: ['/portfolio-image.jpg'], // Replace with your actual image path
   },
+  
 }
 
 export default function RootLayout({
