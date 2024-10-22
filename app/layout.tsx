@@ -15,9 +15,29 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Photo Shoot",
-  description: "Professional photography services",
-};
+  title: 'Professional Photoshoots with Aidan',
+  description: 'Book a professional photography session. Capture your paradise moments with expert photographer Aidan Torrence. Beach, outdoor, and villa shoots available.',
+  openGraph: {
+    title: 'Professional Photoshoots with Aidan',
+    description: 'Book a professional photography session. Capture your paradise moments with expert photographer Aidan Torrence.',
+    images: [
+      {
+        url: '/portfolio-image.jpg', // Replace with your actual image path
+        width: 1200,
+        height: 630,
+        alt: 'Photography Sessions',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Professional Photoshoots with Aidan',
+    description: 'Book a professional photography session. Capture your paradise moments with expert photographer Aidan Torrence.',
+    images: ['/portfolio-image.jpg'], // Replace with your actual image path
+  },
+}
 
 export default function RootLayout({
   children,
