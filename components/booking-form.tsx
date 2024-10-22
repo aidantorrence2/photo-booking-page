@@ -46,7 +46,7 @@ export function BookingForm() {
 
   if (showConfirmation) {
     return (
-      <Card>
+      <Card className="w-full max-w-md mx-auto bg-white shadow-lg border-none rounded-none">
         <CardContent className="p-6">
           <h2 className="text-2xl font-bold mb-4">Thank you for your booking request!</h2>
           <p>We'll get back to you soon to confirm the details.</p>
@@ -56,7 +56,7 @@ export function BookingForm() {
   }
 
   return (
-    <Card>
+    <Card className="w-full max-w-md mx-auto bg-white shadow-lg border-none rounded-none">
       <CardContent className="p-6">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
