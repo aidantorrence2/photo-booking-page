@@ -92,6 +92,7 @@ export function BaliFAQ() {
           {/* Testimonial */}
           <Card className="bg-yellow-50 border-yellow-200">
             <CardContent className="p-4">
+              <h3 className="font-semibold text-gray-800 mb-2">Testimonials</h3>
               <p className="text-sm italic text-gray-700">
                 "HOLY FREAKING MOLY DUDE THESE ARE AWESOME"
               </p>
